@@ -1,0 +1,100 @@
+﻿<div ng-controller="LancamentoCompraController">
+    <div class="scrollable-content">
+
+        <form class="form-group" ng-init="listLancamentoCompra()">
+
+            <div class="list-group-item list-group-item-home media">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="xx">Data do Pedido</label>
+                            <input type="date" class="form-control" ng-model="data_pedido" id="date" placeholder="dd/mm/aaaa" required>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="xx">Valor do Pedido</label>
+                            <input type="number" step="0.00" class="form-control" ng-model="valor_pedido" placeholder="0,00" required>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="xx">Forma de Pagamento</label>
+                            <select class="form-control" ng-model="forma_pagamento" ng-click="fPagamento()" required>
+                                <option ng-repeat="its in listFormaPagamento" value="{{its.Id}}">{{its.Nome}}</option>
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-2" ng-hide="statusVencimento">
+                        <div class="form-group">
+                            <label for="xx">Data do Vencimento</label>
+                            <input type="date" class="form-control" ng-model="data_vencimento"  placeholder="dd/mm/aaaa" required>
+                        </div>
+                    </div>
+
+                    <div class="col-md-1" ng-hide="statusParcela">
+                        <div class="form-group">
+                            <label for="xx">Parcelas</label>
+                            <input type="number" class="form-control" ng-model="qtd_parcela" placeholder="0" required>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <br />
+                        <div class="form-group">                            
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary" ng-click="registraNovaCompra()">Registrar</button>
+                                <button type="button" class="btn btn-default"><a href="#/home" class="pull-left">voltar</a></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <br />
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-filter"></i></span>
+                <div class="icon-addon addon-lg">
+                    <input type="text" placeholder="" class="form-control" ng-model="Objeto.pesquisa">
+                    <label for="busca" class="glyphicon glyphicon-search" rel="tooltip" title="busca"></label>
+                </div>
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" ng-submit="fnPesquisar()">pesquisar</button>
+                </span>
+            </div>
+        </form>
+
+
+        <table class="table table-hover">
+            <tr>
+                <!--<th>Código</th>-->
+                <th>Data do Pedido</th>                
+                <th>Valor</th>
+                <th>Forma de Pagamento</th>
+                <!--<th>Qtd. Parcela</th>-->
+                <th>Vencimento</th> 
+                <th>#</th> 
+                <th>Excluir</th>               
+            </tr>
+            <tr ng-repeat="oCompra in Lista">
+
+                <!--<td>{{oCompra.LAC_ID}}</td>-->
+                <td>{{oCompra.LAC_DATA_PEDIDO | date:'dd/MM/yyyy'}}</td>
+                <td>{{oCompra.LAC_VALOR | currency: "R$ "}}</td>
+                <td>{{oCompra.LAC_FORMA_PAGAMENTO}}</td>
+               <!-- <td>{{oCompra.LAC_QTD_PARCELA}}</td>-->
+                <td>{{oCompra.LAC_DATA_VENCIMENTO | date:'dd/MM/yyyy'}}</td>
+                <td><a href="#/listParcelaLancamentoCompra/{{oCompra.LAC_ID}}"><span class="glyphicon glyphicon-share"></span></a></td>
+                <td><a href="#/listParcelaLancamentoCompra/{{oCompra.LAC_ID}}"><span class="glyphicon glyphicon-remove-circle"></span></a></td>
+
+                
+            </tr>
+        </table>
+
+        <pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" max-size="maxSize" boundary-links="true"></pagination>
+
+    </div>
+</div>

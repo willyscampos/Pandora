@@ -1,0 +1,39 @@
+﻿<div class="scrollable" ng-controller="UsuarioController">
+    <div class="scrollable-content section_login">
+        <div class="text-center"><img src="../../images/logo.png" /></div>
+
+        <form class="col-md-6" ng-init="InitPerfil()">
+            <div class="form-group">
+                <label for="xx">Nome</label>
+                <input type="text" class="form-control" ng-model="usuario" placeholder="Nome" required>
+            </div>
+
+            <div class="form-group">
+                <label for="xx">Email</label>
+                <input type="email" class="form-control" ng-model="email" placeholder="Email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="xx">Senha</label>
+                <input type="password" class="form-control" ng-model="senha" required>
+            </div>
+            <div class="form-group">
+                <label for="xx">Perfil</label>
+                <select class="form-control" ng-model="perfil" ng-click="testeclick()" required>
+                    <option ng-repeat="its in listPerfil" value="{{its.pve_id +'-'+ its.pve_descricao}}">{{its.pve_descricao}}</option>
+                </select>
+
+            </div>
+
+            <div class="form-group">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" ng-click="novoUsuario()">Registrar</button>
+                    <button type="button" class="btn btn-default" ng-click="voltar()">voltar</button>
+                </div>
+            </div>
+
+            {{Resultado}}
+        </form>
+
+    </div>
+</div>

@@ -1,0 +1,57 @@
+﻿<div ng-controller="editParcelaVendaClienteController">
+    <div class="scrollable-content">
+
+        <form class="form-group">
+
+            <div class="list-group-item list-group-item-home media">
+                <div class="row">
+
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="xx">Status do Pagamento</label>
+                            <input type="text" class="form-control" ng-model="status_pagamento" placeholder="" disabled>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="xx">Valor</label>
+                            <input type="text" class="form-control" ng-model="valor_vencimento" placeholder="" disabled>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="xx">Novo Vencimento</label>
+                            <input type="date" class="form-control" ng-model="data_vencimento" id="date" placeholder="">
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <br />
+                        <div class="form-group">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary" ng-click="alteraDataVencimentoCompra()">Alterar</button>
+                                <button type="button" class="btn btn-default"><a href="#/listParcelaVendaCliente/{{lavId}},{{cliId}},{{CliNome}},{{lavValor}},{{lavFormaPagamento}},{{lavDataPedido}}" class="pull-left">voltar</a></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="list-group text-center">
+                <div class="list-group-item list-group-item-home">
+                    <h3><small>Vencimento Atual: {{vencimentoAtual | date:'dd/MM/yyyy'}}</small> </h3>
+                </div>
+                <div class="list-group-item list-group-item-home">
+                    <h3><small>Novo Vencimento: {{data_vencimento | date:'dd/MM/yyyy'}}</small> </h3>
+                </div>
+            </div>
+            <br />
+            <div id="msg"></div>
+
+        </form>
+
+
+    </div>
+</div>

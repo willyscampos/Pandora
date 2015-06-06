@@ -1,0 +1,60 @@
+﻿<div ng-controller="gerenciarVendaController">
+    <div class="scrollable-content">
+
+        <form class="form-group" ng-init="listLancamentoVenda()">
+
+            <!--<div class="list-group-item list-group-item-home media">
+
+
+            </div>-->
+            <br />
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-filter"></i></span>
+                <div class="icon-addon addon-lg">
+                    <input type="text" placeholder="" class="form-control" ng-model="ObjetoPaginacao.pesquisa">
+                    <label for="busca" class="glyphicon glyphicon-search" rel="tooltip" title="busca"></label>
+                </div>
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" ng-click="fnPesquisar()">pesquisar</button>
+                </span>
+            </div>
+        </form>
+
+
+        <table class="table table-hover">
+            <tr>
+                <!--<th>Código</th>-->
+                <th>Data da Venda</th>
+                <th>Cliente</th>
+                <th>Valor</th>
+                <th>Forma de Pagamento</th>
+                <th>#</th>
+                <th>Excluir</th>
+            </tr>
+            <tr ng-repeat="ovenda in Lista">
+
+                <!--<td>{{ovenda.LAC_ID}}</td>-->
+                <td>{{ovenda.LAV_DATA_PEDIDO | date:'dd/MM/yyyy'}}</td>
+                <td>{{ovenda.CLI_NOME}}</td>
+                <td>{{ovenda.LAV_VALOR | currency: "R$ "}}</td>
+                <td>{{ovenda.LAV_FORMA_PAGAMENTO}}</td>
+                <td><a href="#/listParcelaVendaCliente/{{ovenda.LAV_ID}},{{ovenda.CLI_ID}},{{ovenda.CLI_NOME}},{{ovenda.LAV_VALOR}},{{ovenda.LAV_FORMA_PAGAMENTO}},{{ovenda.LAV_DATA_PEDIDO}}"><sp><sp><span class="glyphicon glyphicon-share"></span></a></td>
+                <td><a href="#/listParcelaLancamentoCompra/{{oCompra.LAC_ID}}"><span class="glyphicon glyphicon-remove-circle"></span></a></td>
+
+
+            </tr>
+        </table>
+
+        <pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" max-size="maxSize" boundary-links="true"></pagination>
+        
+            <br />
+            <div class="form-group">
+                <div class="form-group">
+                    <!--<button type="submit" class="btn btn-primary" ng-click="registraNovaCompra()">Registrar</button>-->
+                    <button type="button" class="btn btn-default"><a href="#/home" class="pull-left">voltar</a></button>
+                </div>
+            </div>
+        
+    </div>
+   
+</div>

@@ -1,0 +1,64 @@
+﻿<div class="scrollable" ng-controller="PedidosController">
+
+    <div class="scrollable-content">
+        <div class="section">
+            <p>
+                {{saudacao}}
+                {{nomeUsuario}}
+            </p>
+
+            <div class="list-group-item list-group-item-home media">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="xx">Data do Pedido</label>
+                            <input type="date" class="form-control" ng-model="data_pedido" id="date" placeholder="dd/mm/aaaa" required>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="xx">Valor do Pedido</label>
+                            <input type="number" step="0.00" class="form-control" ng-model="valor_pedido" placeholder="0,00" required>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="xx">Forma de Pagamento</label>
+                            <select class="form-control" ng-model="forma_pagamento" ng-click="fPagamento()" required>
+                                <option ng-repeat="its in listFormaPagamento" value="{{its.Id}}">{{its.Nome}}</option>
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-2" ng-hide="statusVencimento">
+                        <div class="form-group">
+                            <label for="xx">Data do Vencimento</label>
+                            <input type="date" class="form-control" ng-model="data_vencimento" placeholder="dd/mm/aaaa" required>
+                        </div>
+                    </div>
+
+                    <div class="col-md-1" ng-hide="statusParcela">
+                        <div class="form-group">
+                            <label for="xx">Parcelas</label>
+                            <input type="number" class="form-control" ng-model="qtd_parcela" placeholder="0" required>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <br />
+                        <div class="form-group">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary" ng-click="registraNovaCompra()">Registrar</button>
+                                <button type="button" class="btn btn-default"><a href="#/home" class="pull-left">voltar</a></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

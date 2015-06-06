@@ -1,0 +1,46 @@
+﻿<div ng-controller="LancamentoVendaController">
+    <div class="scrollable-content">
+
+        <form class="form-group" ng-init="listCliente()">
+
+            <div class="list-group-item list-group-item-home media">
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="xx">Selecione o Cliente</label>
+                            <select class="form-control" ng-model="clienteId" ng-click="selecionaCliente()" required>
+                                <option ng-repeat="its in listaCliente" value="{{its.CLI_ID}}">{{its.CLI_NOME}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3" ng-hide="btnStatusProtudo">
+                        <br />
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary" ng-click="registraVendaCliente()">Agora selecione os Produtos</button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <br />
+                        <div class="form-group">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-default"><a href="#/home" class="pull-left">voltar</a></button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="msg"></div>
+
+
+            </div>
+
+        </form>
+
+    </div>
+</div>
