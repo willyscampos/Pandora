@@ -1,0 +1,64 @@
+﻿<div ng-controller="listParcelaLancamentoCompraController">
+    <div class="scrollable-content">
+
+        <form class="form-group" ng-init="listParcelaLancamentoCompra()">
+
+            <div class="list-group-item list-group-item-home media">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="xx">Data do Pedido</label>
+                            <input type="text" class="form-control" ng-model="data_pedido" id="date" placeholder="" disabled>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="xx">Valor Total</label>
+                            <input type="text" class="form-control" ng-model="valor_pedido" placeholder="" disabled>
+                        </div>
+                    </div>
+
+                     <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="xx">Pagamento</label>
+                            <input type="text" class="form-control" ng-model="forma_pagamento" placeholder="" disabled>
+                        </div>
+                    </div>
+                  
+                    <div class="col-md-3">
+                        <br />
+                        <div class="form-group">                            
+                            <div class="form-group">
+                                <!--<button type="submit" class="btn btn-primary" ng-click="registraNovaCompra()">Registrar</button>-->
+                                <button type="button" class="btn btn-default"><a href="#/lancamentoCompra" class="pull-left">voltar</a></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <br />
+        
+        </form>
+
+        <table class="table table-hover">
+            <tr>
+               <!-- <th>Código</th>  -->                        
+                <th>Valor</th>               
+                <th>Vencimento</th>
+                <th>Status</th>
+                <th>Editar Vencimento</th>
+                <th><span class="glyphicon glyphicon-check"></span> Pago</th>               
+            </tr>
+            <tr ng-repeat="pParcela in listParcelaCompra">
+
+                <!--<td>{{pParcela.LXP_ID}}</td> -->               
+                <td>{{pParcela.VALOR_PARCELA | currency : "R$ "}}</td>
+                <td>{{pParcela.LXP_DATA_VENCIMENTO | date:'dd/MM/yyyy'}}</td>
+                <td>{{pParcela.STATUS_PARCELA}}</td>
+                 <td><a href="#/editParcelaLancamentoCompra/{{pParcela.LXP_ID}},{{pParcela.STATUS_PARCELA}},{{pParcela.VALOR_PARCELA}},{{pParcela.LXP_DATA_VENCIMENTO}},{{pParcela.LAC_ID}}"><span class="glyphicon glyphicon-edit"></span></a></td>
+                <td><input type="checkbox" name="selected" ng-model="pParcela.LXP_STATUS_PAGAMENTO" ng-click="pagamento($event, pParcela.LXP_ID)"/></td>
+            </tr>
+        </table>        
+    </div>
+</div>

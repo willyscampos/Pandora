@@ -1,0 +1,150 @@
+﻿<div ng-controller="LancamentoVendaProcudoController">
+    <div class="scrollable-content">
+
+        <form class="form-group" ng-init="listProduto()">
+
+            <div class="list-group-item list-group-item-home media">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="xx">Cliente</label>
+                            <input type="text" class="form-control" ng-model="cliente_nome" disabled>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="xx">Selecione o Protudo</label>
+                            <select class="form-control" ng-model="produtoId" ng-click="selecionaProduto()">
+                                <option ng-repeat="its in listaProduto" value="{{its.PRO_ID}}">{{its.PRO_DESCRICAO}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="xx">Valor</label>
+                            <input type="number" step="0.00" class="form-control" ng-model="valor_produto" placeholder="0,00">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-1">
+                        <div class="form-group">
+                            <label for="xx">QTD</label>
+                            <input type="number" class="form-control" ng-model="qtd_produto" placeholder="0">
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-1">
+                        <br />
+                        <div class="form-group">
+                            <label for="xx"></label>
+                            <button type="submit" class="btn btn-primary" ng-click="registraProduto()"><span class="glyphicon glyphicon-plus" data-unicode="2b"></span></button>
+                                                    </div>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <br />
+                        <div class="checkbox">
+                            <label for="xx">                            
+                                <input type="checkbox" ng-click="definirFormaPagamento($event)"> Forma de Pagamento
+                            </label>
+                            
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="list-group-item list-group-item-home media" ng-hide="statusFormFormaPagamento">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="xx">Data da Venda</label>
+                            <input type="date" class="form-control" ng-model="data_pedido" id="date" placeholder="dd/mm/aaaa" required>
+                        </div>
+                    </div>
+                    <!--<div class="col-md-2">
+                <div class="form-group">
+                    <label for="xx">Valor do Pedido</label>
+                    <input type="number" step="0.00" class="form-control" ng-model="valor_pedido" placeholder="0,00" required>
+                </div>
+            </div>-->
+
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="xx">Forma de Pagamento</label>
+                            <select class="form-control" ng-model="forma_pagamento" ng-click="fPagamento()" required>
+                                <option ng-repeat="its in listFormaPagamento" value="{{its.Id}}">{{its.Nome}}</option>
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-2" ng-hide="statusVencimento">
+                        <div class="form-group">
+                            <label for="xx">Data do Vencimento</label>
+                            <input type="date" class="form-control" ng-model="data_vencimento" placeholder="dd/mm/aaaa">
+                        </div>
+                    </div>
+
+                    <div class="col-md-1" ng-hide="statusParcela">
+                        <div class="form-group">
+                            <label for="xx">Parcelas</label>
+                            <input type="number" class="form-control" ng-model="qtd_parcela" placeholder="0">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <br />
+                        <div class="form-group">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary" ng-click="finalizarVenda()">Finalizar Venda</button>
+                                <button type="button" class="btn btn-default"><a href="#/lancamentoVenda" class="pull-left">voltar</a></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+           
+        </form>
+    </div>
+    <table class="table table-hover" id="lisProduto" datatable="ng" dt-options="dtOptions" dt-columns="dtColumns">
+        <tr>
+            <!--<th>Código</th>-->
+            <th>Produto</th>
+            <th>Vl. Uni</th>
+            <th>Qtd</th>
+            <th>Valor Total</th>
+            <th>Excluir</th>
+        </tr>
+        <tr ng-repeat="oVendaProduto in listaProdutoTabela">
+
+            <!--<td>{{oVendaProduto.LAC_ID}}</td>-->
+            <td>{{oVendaProduto.PRO_DESCRICAO}}</td>
+            <td>{{oVendaProduto.PRO_VALOR_VENDA | currency: "R$ "}}</td>
+            <td>{{oVendaProduto.LAP_QTD}}</td>
+            <td>{{oVendaProduto.LAP_VALOR | currency: "R$ "}}</td>
+            <td><button type="button" class="btn btn-danger" ng-click="excluirProdutoLista(oVendaProduto.LAP_ID)"><span class="glyphicon glyphicon-remove"></span></button></td>
+
+        </tr>
+    </table>
+
+    <div class="col-lg-2">
+        <div class="form-group">
+            <label for="xx">Valor Total</label>
+            <!--<a>{{valorTotalVenda | currency: " R$ "}}</a>-->
+            <input type="text" class="form-control" ng-model="valorTotalVenda" placeholder="0,00" disabled>
+        </div>
+    </div>
+
+    
+</div>
+
